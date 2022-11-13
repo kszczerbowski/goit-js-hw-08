@@ -3,9 +3,11 @@ import { galleryItems } from './gallery-items';
 // Change code below this line
 import "simplelightbox/dist/simple-lightbox.min.css";
 import SimpleLightbox from "simplelightbox";
+
 const divGallery = document.querySelector("div.gallery");
 const markupArr = [];
 let markup = "";
+
 galleryItems.forEach(photo => {
     const a = document.createElement("A")
     a.classList.add("gallery__item");

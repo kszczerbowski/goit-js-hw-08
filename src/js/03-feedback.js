@@ -2,6 +2,7 @@ const _ = require('lodash');
 const form = document.querySelector('form.feedback-form');
 const labels = document.querySelectorAll('label');
 const user = JSON.parse(localStorage.getItem("feedback-form-state"));
+
 labels.forEach(label => {
     try {
         label.firstElementChild.value = user[label.firstElementChild.name];
@@ -17,6 +18,12 @@ form.addEventListener('input', _.throttle(() => {
     localStorage.setItem("feedback-form-state", JSON.stringify(user));
 }, 500))
 form.addEventListener('submit', (event) => {
+    labels.forEach(label => {
+        if (label.firstElementChild.value === '') {
+            alert('Please fill in both email and message!')
+            form.removeEventListener();
+        }
+    })
     const user = JSON.parse(localStorage.getItem("feedback-form-state"));
     console.log(user);
     event.preventDefault();
